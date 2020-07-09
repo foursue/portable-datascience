@@ -1,0 +1,14 @@
+version: "3.7"
+services:
+    jupyterlab:
+        build: .
+        volumes:
+            - ./work/:/tmp/working
+        ports:
+            - "8080:8080"
+            - "5000:5000"
+        working_dir: /tmp/working
+        environment:
+            TZ: "Asia/Tokyo"
+        tty: true
+        command: bash -c "mlflow server -h 0.0.0.0 & jupyter notebook --no-browser --ip="0.0.0.0" --notebook-dir=/tmp/working --allow-root"

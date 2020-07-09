@@ -1,0 +1,13 @@
+version: "3.7"
+services:
+    jupyterlab:
+        build: .
+        volumes:
+            - ./work/:/tmp/working
+        ports:
+            - "8888:8888"
+        working_dir: /tmp/working
+        environment:
+            TZ: "Asia/Tokyo"
+        tty: true
+        command: jupyter notebook --no-browser --ip="0.0.0.0" --notebook-dir=/tmp/working --allow-root
